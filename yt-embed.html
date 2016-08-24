@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+    <head>
+        <style type="text/css">
+        html, body, * {
+            background-color: #000;
+            overflow: hidden;
+        }
+        body {
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            margin: 0;
+            padding: 0;
+            vertical-align: baseline;
+        }
+        </style>
+    </head>
+    <body>
+        <div id="player"></div>
+        <script>
+            var tag = document.createElement('script')
+            tag.src = "http://www.youtube.com/iframe_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+            var player;
+            function onYouTubeIframeAPIReady() {
+                player = new YT.Player('player', {
+                    height: '480',
+                    width: '854',
+                    videoId: '{{video-id}}',
+                    events: { 'onReady': onPlayerReady, }
+                });
+            }
+
+            function onPlayerReady(event) {
+                event.target.playVideo();
+            }
+        </script>
+    </body>
+</html>
